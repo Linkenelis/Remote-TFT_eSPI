@@ -28,7 +28,6 @@ char reply[] = "SmartDisplay1 received"; //create reply
 #define DEFAULT_NTP_SERVER_2                      "2.si.pool.ntp.org"
 #define DEFAULT_NTP_SERVER_3                      "3.si.pool.ntp.org"
 #define TIMEZONE TIMEZONE_set
-#define FILE_SYSTEM_LITTLEFS        //for filesystem and time_functions
 #if (FontsFS == 1)
   #define FONTSFS LittleFS
 #elif (FontsFS == 2)
