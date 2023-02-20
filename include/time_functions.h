@@ -296,6 +296,22 @@
       return false;
     }
   }
+    bool cronTabAdd (const char *cronTabLine, bool readFromFile = false) { // parse cronTabLine and then call the function above
+    char second [3]; char minute [3]; char hour [3]; char day [3]; char month [3]; char day_of_week [3]; char cronCommand [65];
+    if (sscanf (cronTabLine, "%2s %2s %2s %2s %2s %2s %64s", second, minute, hour, day, month, day_of_week, cronCommand) == 7) {
+      int8_t se = strcmp (second, "*")      ? atoi (second)      : ANY; if ((!se && *second != '0')      || se > 59) { dmesg ("[cronDaemon][cronAdd] invalid second: ", second); return false; }
+      int8_t mi = strcmp (minute, "*")      ? atoi (minute)      : ANY; if ((!mi && *minute != '0')      || mi > 59) { dmesg ("[cronDaemon][cronAdd] invalid minute: ",  minute); return false; }
+      int8_t hr = strcmp (hour, "*")        ? atoi (hour)        : ANY; if ((!hr && *hour != '0')        || hr > 23) { dmesg ("[cronDaemon][cronAdd] invalid hour: ",  hour); return false; }
+      int8_t dm = strcmp (day, "*")         ? atoi (day)         : ANY; if (!dm                          || dm > 31) { dmesg ("[cronDaemon][cronAdd] invalid day: ", day); return false; }
+      int8_t mn = strcmp (month, "*")       ? atoi (month)       : ANY; if (!mn                          || mn > 12) { dmesg ("[cronDaemon][cronAdd] invalid month: ", month); return false; }
+      int8_t dw = strcmp (day_of_week, "*") ? atoi (day_of_week) : ANY; if ((!dw && *day_of_week != '0') || dw > 7)  { dmesg ("[cronDaemon][cronAdd] invalid day of week: ", day_of_week); return false; }
+      if (!*cronCommand) { dmesg ("[cronDaemon] [cronAdd] missing cron command"); return false; }
+      return cronTabAdd (se, mi, hr, dm, mn, dw, cronCommand, readFromFile);
+    } else {
+      dmesg ("[cronDaemon][cronAdd] invalid cronTabLine: ", cronTabLine);
+      return false;
+    }
+  }
     
   int cronTabDel (char *cronCommand) { // returns the number of cron commands being deleted
     int cnt = 0;
