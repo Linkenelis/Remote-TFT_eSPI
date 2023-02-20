@@ -1,0 +1,575 @@
+[0] Agency FB
+[1] Agency FB Bold
+[2] Agency FB Vet
+[3] Algerian
+[4] Arial
+[5] Arial Black
+[6] Arial Black Standaard
+[7] Arial Bold
+[8] Arial Bold Italic
+[9] Arial Cursief
+[10] Arial Italic
+[11] Arial Narrow
+[12] Arial Narrow Bold
+[13] Arial Narrow Bold Italic
+[14] Arial Narrow Cursief
+[15] Arial Narrow Italic
+[16] Arial Narrow Vet
+[17] Arial Narrow Vet Cursief
+[18] Arial Rounded MT Bold
+[19] Arial Vet
+[20] Arial Vet Cursief
+[21] Bahnschrift
+[22] Bahnschrift Bold
+[23] Bahnschrift Bold Condensed
+[24] Bahnschrift Bold SemiCondensed
+[25] Bahnschrift Condensed
+[26] Bahnschrift Light
+[27] Bahnschrift Light Condensed
+[28] Bahnschrift Light SemiCondensed
+[29] Bahnschrift Regular
+[30] Bahnschrift SemiBold
+[31] Bahnschrift SemiBold Condensed
+[32] Bahnschrift SemiBold SemiCondensed
+[33] Bahnschrift SemiCondensed
+[34] Bahnschrift SemiLight
+[35] Bahnschrift SemiLight Condensed
+[36] Bahnschrift SemiLight SemiCondensed
+[37] Baskerville Old Face
+[38] Bauhaus 93
+[39] Bell MT
+[40] Bell MT Bold
+[41] Bell MT Cursief
+[42] Bell MT Italic
+[43] Bell MT Vet
+[44] Berlin Sans FB
+[45] Berlin Sans FB Bold
+[46] Berlin Sans FB Demi Bold
+[47] Berlin Sans FB Demi Vet
+[48] Berlin Sans FB Vet
+[49] Bernard MT Condensed
+[50] Blackadder ITC
+[51] Bodoni MT
+[52] Bodoni MT Black
+[53] Bodoni MT Black Cursief
+[54] Bodoni MT Black Italic
+[55] Bodoni MT Bold
+[56] Bodoni MT Bold Italic
+[57] Bodoni MT Condensed
+[58] Bodoni MT Condensed Bold
+[59] Bodoni MT Condensed Bold Italic
+[60] Bodoni MT Condensed Cursief
+[61] Bodoni MT Condensed Italic
+[62] Bodoni MT Condensed Vet
+[63] Bodoni MT Condensed Vet Cursief
+[64] Bodoni MT Cursief
+[65] Bodoni MT Italic
+[66] Bodoni MT Poster Compressed
+[67] Bodoni MT Vet
+[68] Bodoni MT Vet Cursief
+[69] Book Antiqua
+[70] Book Antiqua Bold
+[71] Book Antiqua Bold Italic
+[72] Book Antiqua Cursief
+[73] Book Antiqua Italic
+[74] Book Antiqua Vet
+[75] Book Antiqua Vet Cursief
+[76] Bookman Old Style
+[77] Bookman Old Style Bold
+[78] Bookman Old Style Bold Italic
+[79] Bookman Old Style Cursief
+[80] Bookman Old Style Italic
+[81] Bookman Old Style Vet
+[82] Bookman Old Style Vet Cursief
+[83] Bookshelf Symbol 7
+[84] Bradley Hand ITC
+[85] Britannic Bold
+[86] Broadway
+[87] Brush Script MT Cursief
+[88] Brush Script MT Italic
+[89] Calibri
+[90] Calibri Bold
+[91] Calibri Bold Italic
+[92] Calibri Italic
+[93] Calibri Light
+[94] Calibri Light Italic
+[95] Californian FB
+[96] Californian FB Bold
+[97] Californian FB Cursief
+[98] Californian FB Italic
+[99] Californian FB Vet
+[100] Calisto MT
+[101] Calisto MT Bold
+[102] Calisto MT Bold Italic
+[103] Calisto MT Cursief
+[104] Calisto MT Italic
+[105] Calisto MT Vet
+[106] Calisto MT Vet Cursief
+[107] Cambria
+[108] Cambria Bold
+[109] Cambria Bold Italic
+[110] Cambria Italic
+[111] Cambria Math
+[112] Candara
+[113] Candara Bold
+[114] Candara Bold Italic
+[115] Candara Italic
+[116] Candara Light
+[117] Candara Light Italic
+[118] Cascadia Code Bold
+[119] Cascadia Code Bold Italic
+[120] Cascadia Code ExtraLight
+[121] Cascadia Code ExtraLight Italic
+[122] Cascadia Code Italic
+[123] Cascadia Code Light
+[124] Cascadia Code Light Italic
+[125] Cascadia Code Regular
+[126] Cascadia Code SemiBold
+[127] Cascadia Code SemiBold Italic
+[128] Cascadia Code SemiLight
+[129] Cascadia Code SemiLight Italic
+[130] Cascadia Mono Bold
+[131] Cascadia Mono Bold Italic
+[132] Cascadia Mono ExtraLight
+[133] Cascadia Mono ExtraLight Italic
+[134] Cascadia Mono Italic
+[135] Cascadia Mono Light
+[136] Cascadia Mono Light Italic
+[137] Cascadia Mono Regular
+[138] Cascadia Mono SemiBold
+[139] Cascadia Mono SemiBold Italic
+[140] Cascadia Mono SemiLight
+[141] Cascadia Mono SemiLight Italic
+[142] Castellar
+[143] Centaur
+[144] Century
+[145] Century Gothic
+[146] Century Gothic Bold
+[147] Century Gothic Bold Italic
+[148] Century Gothic Cursief
+[149] Century Gothic Italic
+[150] Century Gothic Vet
+[151] Century Gothic Vet Cursief
+[152] Century Schoolbook
+[153] Century Schoolbook Bold
+[154] Century Schoolbook Bold Italic
+[155] Century Schoolbook Cursief
+[156] Century Schoolbook Italic
+[157] Century Schoolbook Vet
+[158] Century Schoolbook Vet Cursief
+[159] Chiller
+[160] Colonna MT
+[161] Comic Sans MS
+[162] Comic Sans MS Bold
+[163] Comic Sans MS Bold Italic
+[164] Comic Sans MS Cursief
+[165] Comic Sans MS Italic
+[166] Comic Sans MS Vet
+[167] Comic Sans MS Vet Cursief
+[168] Consolas
+[169] Consolas Bold
+[170] Consolas Bold Italic
+[171] Consolas Italic
+[172] Constantia
+[173] Constantia Bold
+[174] Constantia Bold Italic
+[175] Constantia Italic
+[176] Cooper Black
+[177] Copperplate Gothic Bold
+[178] Copperplate Gothic Light
+[179] Corbel
+[180] Corbel Bold
+[181] Corbel Bold Italic
+[182] Corbel Italic
+[183] Corbel Light
+[184] Corbel Light Italic
+[185] Courier New
+[186] Courier New Bold
+[187] Courier New Bold Italic
+[188] Courier New Cursief
+[189] Courier New Italic
+[190] Courier New Vet
+[191] Courier New Vet Cursief
+[192] Curlz MT
+[193] Dialog.bold
+[194] Dialog.bolditalic
+[195] Dialog.italic
+[196] Dialog.plain
+[197] DialogInput.bold
+[198] DialogInput.bolditalic
+[199] DialogInput.italic
+[200] DialogInput.plain
+[201] Dubai Bold
+[202] Dubai Light
+[203] Dubai Medium
+[204] Dubai Regular
+[205] Ebrima
+[206] Ebrima Bold
+[207] Ebrima Vet
+[208] Edwardian Script ITC
+[209] Elephant
+[210] Elephant Cursief
+[211] Elephant Italic
+[212] Engravers MT
+[213] Eras Bold ITC
+[214] Eras Demi ITC
+[215] Eras Light ITC
+[216] Eras Medium ITC
+[217] Felix Titling
+[218] Footlight MT Light
+[219] Forte
+[220] Franklin Gothic Book
+[221] Franklin Gothic Book Cursief
+[222] Franklin Gothic Book Italic
+[223] Franklin Gothic Demi
+[224] Franklin Gothic Demi Cond
+[225] Franklin Gothic Demi Cursief
+[226] Franklin Gothic Demi Italic
+[227] Franklin Gothic Heavy
+[228] Franklin Gothic Heavy Cursief
+[229] Franklin Gothic Heavy Italic
+[230] Franklin Gothic Medium
+[231] Franklin Gothic Medium Cond
+[232] Franklin Gothic Medium Cursief
+[233] Franklin Gothic Medium Italic
+[234] Freestyle Script
+[235] French Script MT
+[236] Gabriola
+[237] Gadugi
+[238] Gadugi Bold
+[239] Gadugi Vet
+[240] Garamond
+[241] Garamond Bold
+[242] Garamond Cursief
+[243] Garamond Italic
+[244] Garamond Vet
+[245] Georgia
+[246] Georgia Bold
+[247] Georgia Bold Italic
+[248] Georgia Cursief
+[249] Georgia Italic
+[250] Georgia Vet
+[251] Georgia Vet Cursief
+[252] Gigi
+[253] Gill Sans MT
+[254] Gill Sans MT Bold
+[255] Gill Sans MT Bold Italic
+[256] Gill Sans MT Condensed
+[257] Gill Sans MT Cursief
+[258] Gill Sans MT Ext Condensed Bold
+[259] Gill Sans MT Italic
+[260] Gill Sans MT Vet
+[261] Gill Sans MT Vet Cursief
+[262] Gill Sans Ultra Bold
+[263] Gill Sans Ultra Bold Condensed
+[264] Gloucester MT Extra Condensed
+[265] Goudy Old Style
+[266] Goudy Old Style Bold
+[267] Goudy Old Style Cursief
+[268] Goudy Old Style Italic
+[269] Goudy Old Style Vet
+[270] Goudy Stout
+[271] Haettenschweiler
+[272] Harlow Solid Italic
+[273] Harrington
+[274] High Tower Text
+[275] High Tower Text Cursief
+[276] High Tower Text Italic
+[277] HoloLens MDL2 Assets
+[278] Impact
+[279] Imprint MT Shadow
+[280] Informal Roman
+[281] Ink Free
+[282] Javanese Text
+[283] Jokerman
+[284] Juice ITC
+[285] Kievit Offc Pro
+[286] Kristen ITC
+[287] Kunstler Script
+[288] Leelawadee UI
+[289] Leelawadee UI Bold
+[290] Leelawadee UI Semilight
+[291] Leelawadee UI Semilight Standaard
+[292] Leelawadee UI Vet
+[293] Lucida Bright
+[294] Lucida Bright Demibold
+[295] Lucida Bright Demibold Italic
+[296] Lucida Bright Italic
+[297] Lucida Calligraphy Italic
+[298] Lucida Console
+[299] Lucida Fax
+[300] Lucida Fax Cursief
+[301] Lucida Fax Demibold
+[302] Lucida Fax Demibold Italic
+[303] Lucida Fax Halfvet
+[304] Lucida Fax Halfvet Cursief
+[305] Lucida Fax Italic
+[306] Lucida Fax Regular
+[307] Lucida Handwriting Cursief
+[308] Lucida Handwriting Italic
+[309] Lucida Sans
+[310] Lucida Sans Cursief
+[311] Lucida Sans Demibold Italic
+[312] Lucida Sans Demibold Roman
+[313] Lucida Sans Halfvet
+[314] Lucida Sans Halfvet Cursief
+[315] Lucida Sans Italic
+[316] Lucida Sans Regular
+[317] Lucida Sans Typewriter
+[318] Lucida Sans Typewriter Bold
+[319] Lucida Sans Typewriter Bold Oblique
+[320] Lucida Sans Typewriter Oblique
+[321] Lucida Sans Typewriter Regular
+[322] Lucida Sans Typewriter Schuin
+[323] Lucida Sans Typewriter Vet
+[324] Lucida Sans Typewriter Vet Schuin
+[325] Lucida Sans Unicode
+[326] MS Gothic
+[327] MS Outlook
+[328] MS PGothic
+[329] MS Reference Sans Serif
+[330] MS Reference Specialty
+[331] MS UI Gothic
+[332] MT Extra
+[333] MV Boli
+[334] Magneto Bold
+[335] Magneto Vet
+[336] Maiandra GD
+[337] Malgun Gothic
+[338] Malgun Gothic Bold
+[339] Malgun Gothic Semilight
+[340] Marlett
+[341] Matura MT Script Capitals
+[342] Microsoft Himalaya
+[343] Microsoft JhengHei
+[344] Microsoft JhengHei Bold
+[345] Microsoft JhengHei Light
+[346] Microsoft JhengHei UI
+[347] Microsoft JhengHei UI Light
+[348] Microsoft JhengHei UI Vet
+[349] Microsoft JhengHei Vet
+[350] Microsoft New Tai Lue
+[351] Microsoft New Tai Lue Bold
+[352] Microsoft PhagsPa
+[353] Microsoft PhagsPa Bold
+[354] Microsoft Sans Serif
+[355] Microsoft Tai Le
+[356] Microsoft Tai Le Bold
+[357] Microsoft YaHei
+[358] Microsoft YaHei Bold
+[359] Microsoft YaHei Light
+[360] Microsoft YaHei UI
+[361] Microsoft YaHei UI Light
+[362] Microsoft YaHei UI Vet
+[363] Microsoft YaHei Vet
+[364] Microsoft Yi Baiti
+[365] MingLiU-ExtB
+[366] MingLiU_HKSCS-ExtB
+[367] Mistral
+[368] Modern No. 20
+[369] Mongolian Baiti
+[370] Monospaced.bold
+[371] Monospaced.bolditalic
+[372] Monospaced.italic
+[373] Monospaced.plain
+[374] Monotype Corsiva
+[375] Myanmar Text
+[376] Myanmar Text Bold
+[377] Myanmar Text Vet
+[378] NSimSun
+[379] Niagara Engraved
+[380] Niagara Solid
+[381] Nirmala UI
+[382] Nirmala UI Bold
+[383] Nirmala UI Semilight
+[384] Nirmala UI Vet
+[385] OCR A Extended
+[386] Old English Text MT
+[387] Onyx
+[388] PMingLiU-ExtB
+[389] Palace Script MT
+[390] Palatino Linotype
+[391] Palatino Linotype Bold
+[392] Palatino Linotype Bold Italic
+[393] Palatino Linotype Cursief
+[394] Palatino Linotype Italic
+[395] Palatino Linotype Vet
+[396] Palatino Linotype Vet Cursief
+[397] Papyrus
+[398] Parchment
+[399] Perpetua
+[400] Perpetua Bold
+[401] Perpetua Bold Italic
+[402] Perpetua Cursief
+[403] Perpetua Italic
+[404] Perpetua Titling MT Bold
+[405] Perpetua Titling MT Light
+[406] Perpetua Titling MT Mager
+[407] Perpetua Titling MT Vet
+[408] Perpetua Vet
+[409] Perpetua Vet Cursief
+[410] Playbill
+[411] Poor Richard
+[412] Pristina
+[413] Rage Italic
+[414] Ravie
+[415] Rockwell
+[416] Rockwell Bold
+[417] Rockwell Bold Italic
+[418] Rockwell Condensed
+[419] Rockwell Condensed Bold
+[420] Rockwell Condensed Vet
+[421] Rockwell Cursief
+[422] Rockwell Extra Bold
+[423] Rockwell Italic
+[424] Rockwell Vet
+[425] Rockwell Vet Cursief
+[426] Sans Serif Collection
+[427] SansSerif.bold
+[428] SansSerif.bolditalic
+[429] SansSerif.italic
+[430] SansSerif.plain
+[431] Script MT Bold
+[432] Segoe Fluent Icons
+[433] Segoe MDL2 Assets
+[434] Segoe Print
+[435] Segoe Print Bold
+[436] Segoe Script
+[437] Segoe Script Bold
+[438] Segoe Script Vet
+[439] Segoe UI
+[440] Segoe UI Black
+[441] Segoe UI Black Italic
+[442] Segoe UI Bold
+[443] Segoe UI Bold Italic
+[444] Segoe UI Cursief
+[445] Segoe UI Emoji
+[446] Segoe UI Historic
+[447] Segoe UI Italic
+[448] Segoe UI Light
+[449] Segoe UI Light Italic
+[450] Segoe UI Semibold
+[451] Segoe UI Semibold Italic
+[452] Segoe UI Semilight
+[453] Segoe UI Semilight Italic
+[454] Segoe UI Symbol
+[455] Segoe UI Variable
+[456] Segoe UI Variable Display
+[457] Segoe UI Variable Display Bold
+[458] Segoe UI Variable Display Light
+[459] Segoe UI Variable Display Semibold
+[460] Segoe UI Variable Display Semilight
+[461] Segoe UI Variable Small
+[462] Segoe UI Variable Small Bold
+[463] Segoe UI Variable Small Light
+[464] Segoe UI Variable Small Semibold
+[465] Segoe UI Variable Small Semilight
+[466] Segoe UI Variable Text
+[467] Segoe UI Variable Text Bold
+[468] Segoe UI Variable Text Light
+[469] Segoe UI Variable Text Semibold
+[470] Segoe UI Variable Text Semilight
+[471] Segoe UI Vet
+[472] Segoe UI Vet Cursief
+[473] Serif.bold
+[474] Serif.bolditalic
+[475] Serif.italic
+[476] Serif.plain
+[477] Showcard Gothic
+[478] SimSun
+[479] SimSun-ExtB
+[480] Sitka Banner
+[481] Sitka Banner Bold
+[482] Sitka Banner Bold Italic
+[483] Sitka Banner Italic
+[484] Sitka Banner Semibold
+[485] Sitka Banner Semibold Italic
+[486] Sitka Display
+[487] Sitka Display Bold
+[488] Sitka Display Bold Italic
+[489] Sitka Display Italic
+[490] Sitka Display Semibold
+[491] Sitka Display Semibold Italic
+[492] Sitka Heading
+[493] Sitka Heading Bold
+[494] Sitka Heading Bold Italic
+[495] Sitka Heading Italic
+[496] Sitka Heading Semibold
+[497] Sitka Heading Semibold Italic
+[498] Sitka Small
+[499] Sitka Small Bold
+[500] Sitka Small Bold Italic
+[501] Sitka Small Italic
+[502] Sitka Small Semibold
+[503] Sitka Small Semibold Italic
+[504] Sitka Subheading
+[505] Sitka Subheading Bold
+[506] Sitka Subheading Bold Italic
+[507] Sitka Subheading Italic
+[508] Sitka Subheading Semibold
+[509] Sitka Subheading Semibold Italic
+[510] Sitka Text
+[511] Sitka Text Bold
+[512] Sitka Text Bold Italic
+[513] Sitka Text Italic
+[514] Sitka Text Semibold
+[515] Sitka Text Semibold Italic
+[516] Snap ITC
+[517] Stencil
+[518] Sylfaen
+[519] Symbol
+[520] Tahoma
+[521] Tahoma Bold
+[522] Tahoma Vet
+[523] Tempus Sans ITC
+[524] Times New Roman
+[525] Times New Roman Bold
+[526] Times New Roman Bold Italic
+[527] Times New Roman Cursief
+[528] Times New Roman Italic
+[529] Times New Roman Vet
+[530] Times New Roman Vet Cursief
+[531] Trebuchet MS
+[532] Trebuchet MS Bold
+[533] Trebuchet MS Bold Italic
+[534] Trebuchet MS Cursief
+[535] Trebuchet MS Italic
+[536] Trebuchet MS Vet
+[537] Trebuchet MS Vet Cursief
+[538] TtsNoteStandard
+[539] Tw Cen MT
+[540] Tw Cen MT Bold
+[541] Tw Cen MT Bold Italic
+[542] Tw Cen MT Condensed
+[543] Tw Cen MT Condensed Bold
+[544] Tw Cen MT Condensed Extra Bold
+[545] Tw Cen MT Condensed Vet
+[546] Tw Cen MT Cursief
+[547] Tw Cen MT Italic
+[548] Tw Cen MT Vet
+[549] Tw Cen MT Vet Cursief
+[550] Verdana
+[551] Verdana Bold
+[552] Verdana Bold Italic
+[553] Verdana Cursief
+[554] Verdana Italic
+[555] Verdana Vet
+[556] Verdana Vet Cursief
+[557] Viner Hand ITC
+[558] Vivaldi Cursief
+[559] Vivaldi Italic
+[560] Vladimir Script
+[561] Webdings
+[562] Wide Latin
+[563] Wingdings
+[564] Wingdings 2
+[565] Wingdings 3
+[566] Yu Gothic Bold
+[567] Yu Gothic Light
+[568] Yu Gothic Medium
+[569] Yu Gothic Regular
+[570] Yu Gothic UI Bold
+[571] Yu Gothic UI Light
+[572] Yu Gothic UI Regular
+[573] Yu Gothic UI Semibold
+[574] Yu Gothic UI Semilight
