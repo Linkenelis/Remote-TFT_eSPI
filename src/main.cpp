@@ -83,7 +83,7 @@ void IRAM_ATTR onTimer() {  //runs every sec
   portEXIT_CRITICAL_ISR(&timerMux); 
 }
 
-void UDPsend(char* msg, int x, int y)
+void UDPsend(const char* msg, int x, int y)
 {
   UDP.beginPacket("Testesp", 2000);
   // UDP.printf("TJpgDec.drawFsJpg(10,100,/Buttons/Button_Download_Red.jpg");
