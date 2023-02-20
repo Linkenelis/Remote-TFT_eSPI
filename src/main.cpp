@@ -399,9 +399,9 @@ void setup(void)
     Serial.printf("SD Card Size: %lluMB\n", cardSize);
     listDir(SD, "/", 0);
   }
-  Calibrate_TP();
   tft.init();
   tft.setRotation(3);
+  Calibrate_TP();
   spr.setColorDepth(16); // 16 bit colour needed to show antialiased fonts
   tft.setTextDatum(BL_DATUM);   //Bottom-Left start of text
   tft.fillScreen((0xF000));
