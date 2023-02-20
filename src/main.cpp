@@ -432,7 +432,7 @@ void setup(void)
   UDP.begin(UDP_PORT);
   Serial.print("Listening on UDP port ");
   Serial.println(UDP_PORT);
-  ftpSrv.begin(SD, FTP_USERNAME, FTP_PASSWORD); // username, password for ftp.
+  ftpSrv.begin(LittleFS, FTP_USERNAME, FTP_PASSWORD); // username, password for ftp.
   IPAddress ip = WiFi.localIP();
   char myip[20];
   sprintf(myip, "%u.%u.%u.%u", ip[0], ip[1], ip[2], ip[3]);
