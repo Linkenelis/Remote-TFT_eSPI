@@ -17,6 +17,7 @@ Multitude of possibillities eg:
 -Remote display
 -Multiple senders to 1 display (touch can be changed to send to different hosts depending on x and y)
 -Sender can be any OS, so they can also be mixed
+-ESP32-Devices with WiFi, but lacking SPI-pins like Tasmota, can do UDP via Berry
 
 FTP included to store images (buttons) ttf-Fonts -> send image (jpg) over FTP and then display it
 LittleFS and SD, UDPsend "FTP.LittleFS()" or UDPsend "FTP.SD()", to switch FTP server
@@ -42,3 +43,21 @@ SD_MOSI 23
 SD_CS   5
 
 There is no read display (not with ili9488 with touch as TFT_MISO is connected to Touch and not to the display)
+
+
+
+example Swiss File Knife in windows cmd: sfk udpsend SmartDisplay1 2000 "tft.brightness(100)"
+
+Example in Arduino:
+#include <WiFiUdp.h>
+#define UDP_PORT 2000 (can be anything as long as they are known to eachothe. So good to keep them the same)
+void UDPsend(char* msg)
+{
+  UDP.beginPacket(SmartDisplay1, UDP_PORT);
+  UDP.printf(msg);
+  UDP.endPacket();
+}
+
+in setup add after WiFi start:
+UDP.begin(UDP_PORT);
+
