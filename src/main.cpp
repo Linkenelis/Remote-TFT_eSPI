@@ -192,8 +192,9 @@ void UDP_Check(void)
       }
       if(StrCommand=="TJpgDec") //Show JPG; parameters are 2x int and a string
       {
-        StrPos=StrPacket.indexOf("(");
-        StrCommand=StrPacket.substring(0, StrPos);
+        Serial.println("TJpgDec");
+        StrPos=rest.indexOf("(");
+        StrCommand=rest.substring(0, StrPos);
         rest=StrPacket.substring(StrPos+1,255);
         p[0]=0;
         for(int i=1; i<3; i++)
@@ -201,8 +202,9 @@ void UDP_Check(void)
           StrPos=rest.indexOf(",");
           p[i] = rest.substring(0,StrPos).toInt();
           rest=rest.substring(StrPos+1,255);
+          Serial.println(rest);
         }
-        if(StrCommand=="drawFsJpg")     {TJpgDec.drawFsJpg(p[1],p[2],"", SD_MMC);return;}
+        if(StrCommand=="drawFsJpg")     {Serial.println("drawfsjpg"); TJpgDec.drawFsJpg(p[1],p[2], rest, JPGFS);return;}
       }
       if(StrCommand=="FTP")
       {
