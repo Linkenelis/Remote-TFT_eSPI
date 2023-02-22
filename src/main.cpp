@@ -295,7 +295,7 @@ void TP_loop()
       {
         tft.getTouch(&x, &y);
         Serial.printf("at x = %i, y = %i\n", x, y);
-        if(y>=280){UDPsend(Sender2, "xy-touched", x, y);} else {UDPsend(Sender2, "xy-touched", x, y);}
+        if(y>=280){UDPsend(Sender2, "xy-touched", x, y);} else {UDPsend(Sender1, "xy-touched", x, y);}
       }
     }
   }
