@@ -44,8 +44,6 @@ SD_CS   5
 
 There is no read display (not with ili9488 with touch as TFT_MISO is connected to Touch and not to the display)
 
-
-
 example Swiss File Knife in windows cmd: sfk udpsend SmartDisplay1 2000 "tft.brightness(100)"
 
 Example in Arduino:
@@ -61,3 +59,5 @@ void UDPsend(char* msg)
 in setup add after WiFi start:
 UDP.begin(UDP_PORT);
 
+Tasmota berry example added.
+press bottom of the display to send Tasmota hostname a message, so it knows the ip of the Display (can berry send to host?)
