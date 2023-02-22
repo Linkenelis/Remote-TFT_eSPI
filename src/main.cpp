@@ -9,7 +9,6 @@
 #define HOSTNAME Hostname
 //UDP
 #include <WiFiUdp.h>
-#define UDP_PORT 2000
 WiFiUDP UDP;
 char packet[255]; //for incoming packet
 char reply[] = "SmartDisplay1 received"; //create reply
@@ -82,9 +81,17 @@ void IRAM_ATTR onTimer() {  //runs every sec
   portEXIT_CRITICAL_ISR(&timerMux); 
 }
 
+void UDPsend(const char* sender, const char* msg, int x, int y)
+{
+  UDP.beginPacket(sender, UDP_port);
+  // UDP.printf("TJpgDec.drawFsJpg(10,100,/Buttons/Button_Download_Red.jpg");
+  if(x==-1&&y==-1){UDP.printf(msg); } else {UDP.printf("%s, %d, %d",msg,x,y);}
+  UDP.endPacket();
+}
+
 void UDPsend(const char* msg, int x, int y)
 {
-  UDP.beginPacket("Testesp", 2000);
+  UDP.beginPacket("Testesp", UDP_port);
   // UDP.printf("TJpgDec.drawFsJpg(10,100,/Buttons/Button_Download_Red.jpg");
   if(x==-1&&y==-1){UDP.printf(msg); } else {UDP.printf("%s, %d, %d",msg,x,y);}
   UDP.endPacket();
@@ -283,13 +290,12 @@ void TP_loop()
     {
       tpr_loop = false;
       Serial.println("Pressed");
-      UDPsend("pressed",-1,-1);
+      //UDPsend("pressed",-1,-1);
       if (Pressedxy)
       {
         tft.getTouch(&x, &y);
         Serial.printf("at x = %i, y = %i\n", x, y);
-          //Could do different receivers (hosts), depending on x or y
-        UDPsend("xy",x,y);
+        if(y>=280){UDPsend(Sender2, "xy-touched", x, y);} else {UDPsend(Sender2, "xy-touched", x, y);}
       }
     }
   }
@@ -298,7 +304,7 @@ void TP_loop()
     if (!tpr_loop)
     {
       Serial.println("Released");
-      UDPsend("released",-1,-1);
+      //UDPsend("released",-1,-1);
       if (Releasedxy)
       {
         tft.getTouch(&x, &y);
@@ -428,9 +434,9 @@ void setup(void)
   Serial.print("loop running on core ");
   Serial.println(xPortGetCoreID());
   // Begin listening to UDP port
-  UDP.begin(UDP_PORT);
+  UDP.begin(UDP_port);
   Serial.print("Listening on UDP port ");
-  Serial.println(UDP_PORT);
+  Serial.println(UDP_port);
   ftpSrv.begin(LittleFS, FTP_USERNAME, FTP_PASSWORD); // username, password for ftp.
   IPAddress ip = WiFi.localIP();
   char myip[20];
