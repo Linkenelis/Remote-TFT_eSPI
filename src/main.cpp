@@ -169,6 +169,7 @@ void UDP_Check(void)
         if(StrCommand=="setCursor")     {tft.setCursor(p[1],p[2]); UDP_Check();}  //run again for print or println
         if(StrCommand=="print")         {tft.print(str); return;}  //with setCursor
         if(StrCommand=="println")       {tft.println(str); return;}
+        if(StrCommand=="setTextColor")  {tft.setTextColor(p[1], p[2]); return;}
         
 
         if(StrCommand=="loadFont")     {tft.loadFont("Fonts/Arial"+String(p[1]), FONTSFS); return;}  //All ttf-fonts same name, number p[1] is the size
@@ -204,7 +205,9 @@ void UDP_Check(void)
           rest=rest.substring(StrPos+1,255);
           Serial.println(rest);
         }
-        if(StrCommand=="drawFsJpg")     {Serial.println("drawfsjpg"); TJpgDec.drawFsJpg(p[1],p[2], rest, JPGFS);return;}
+        if(StrCommand=="drawFsJpg")     {Serial.print("drawFsjpg");Serial.println(rest); TJpgDec.drawFsJpg(p[1],p[2], rest, LittleFS);return;}   // /in name then LittleFS; withou SD
+        if(StrCommand=="drawSdJpg")     {Serial.print("drawSDjpg");Serial.println(rest); TJpgDec.drawFsJpg(p[1],p[2], rest, SD);return;}
+        //if(StrCommand=="drawJpg")     {Serial.println("drawJpg"); TJpgDec.drawJpg(p[1],p[2], rest, p[3]);return;} //Needs extra file.h with the images
       }
       if(StrCommand=="FTP")
       {
@@ -376,11 +379,14 @@ void setup(void)
   Serial.println(LittleFS.totalBytes());
   Serial.print("Flash storage used = ");
   Serial.println(LittleFS.usedBytes());
-  Serial.println("setup      : Init SD card");
+ 
   if(FontsFS==2||ButtonsFS==2||JpgFS==2)   //if SD is used
   {
     SPI.begin(18,19,23);    //This is standard VSPI, so make sure TFT_eSPI uses HSPI
-    if(!SD.begin(5)){
+    SD.end(); 
+    Serial.println("setup      : Init SD card");
+    SD.begin(5);
+    if(!SD.begin(5, SPI, 160000000)){
         Serial.println("Card Mount Failed");
         return;
     }
