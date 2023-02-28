@@ -2666,6 +2666,71 @@ void TFT_eSprite::printToSprite(char *cbuffer, uint16_t len) //String string)
   }
 }
 
+/***************************************************************************************
+** Function name:           printToSprite
+** Description:             Write a string to the sprite cursor position
+***************************************************************************************/
+void TFT_eSprite::printToSprite(String string, int x, int y)
+{
+  if(!fontLoaded) return;
+  printToSprite((char*)string.c_str(), string.length(), x, y);
+}
+
+
+/***************************************************************************************
+** Function name:           printToSprite
+** Description:             Write a string to the sprite cursor position
+***************************************************************************************/
+void TFT_eSprite::printToSprite(char *cbuffer, uint16_t len, int x, int y) //String string)
+{
+  if(!fontLoaded) return;
+
+  uint16_t n = 0;
+  bool newSprite = !_created;
+  int16_t  cursorX = x;
+
+  if (newSprite)
+  {
+    int16_t sWidth = 0;
+    uint16_t index = 0;
+    bool     first = true;
+    while (n < len)
+    {
+      uint16_t unicode = decodeUTF8((uint8_t*)cbuffer, &n, len - n);
+      if (getUnicodeIndex(unicode, &index))
+      {
+        if (first) {
+          first = false;
+          sWidth -= gdX[index];
+          cursorX += gdX[index];
+        }
+        if (n == len) sWidth += ( gWidth[index] + gdX[index]);
+        else sWidth += gxAdvance[index];
+      }
+      else sWidth += gFont.spaceWidth + 1;
+    }
+
+    createSprite(sWidth, gFont.yAdvance);
+
+    if (textcolor != textbgcolor) fillSprite(textbgcolor);
+  }
+
+  n = 0;
+
+  while (n < len)
+  {
+    uint16_t unicode = decodeUTF8((uint8_t*)cbuffer, &n, len - n);
+    //Serial.print("Decoded Unicode = 0x");Serial.println(unicode,HEX);
+    //Serial.print("n = ");Serial.println(n);
+    drawGlyph(unicode);
+  }
+
+  if (newSprite)
+  { // The sprite had to be created so place at TFT cursor
+    pushSprite(cursorX, y);
+    deleteSprite();
+  }
+}
 
 /***************************************************************************************
 ** Function name:           printToSprite

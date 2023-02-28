@@ -43,6 +43,7 @@ char reply[] = "SmartDisplay1 received"; //create reply
   #define JPGFS SD
 #endif
 
+
 #include "version_of_servers.h"
 #include "dmesg_functions.h"
 #include "perfMon.h"  
@@ -67,7 +68,7 @@ uint16_t x, y;
 int StrPos=0;
 int p[8];
 char * tohost;  //The host to send the UDP to (touch coordinates)
-
+int SHOW_TIME=Show_time;
 
 
 portMUX_TYPE timerMux = portMUX_INITIALIZER_UNLOCKED;
@@ -152,28 +153,29 @@ void UDP_Check(void)
         if(StrCommand=="setRotation")   {tft.setRotation(p[1]);return;}
         if(StrCommand=="fillScreen")    {tft.fillScreen(p[1]); return;}
         if(StrCommand=="drawRect")      {tft.drawRect(p[1],p[2],p[3],p[4],p[5]); return;}
-        if(StrCommand=="drawRoundRect")      {tft.drawRoundRect(p[1],p[2],p[3],p[4],p[5],p[6]); return;}
-        if(StrCommand=="fillRoundRect")      {tft.fillRoundRect(p[1],p[2],p[3],p[4],p[5],p[6]); return;}
-        if(StrCommand=="fillRectVGradient")  {tft.fillRectVGradient(p[1],p[2],p[3],p[4],p[5],p[6]); return;}
-        if(StrCommand=="fillRectHGradient")  {tft.fillRectHGradient(p[1],p[2],p[3],p[4],p[5],p[6]); return;}
-        if(StrCommand=="drawCircle")  {tft.drawCircle(p[1],p[2],p[3],p[4]); return;}
+        if(StrCommand=="drawRoundRect")     {tft.drawRoundRect(p[1],p[2],p[3],p[4],p[5],p[6]); return;}
+        if(StrCommand=="fillRoundRect")     {tft.fillRoundRect(p[1],p[2],p[3],p[4],p[5],p[6]); return;}
+        if(StrCommand=="fillRectVGradient") {tft.fillRectVGradient(p[1],p[2],p[3],p[4],p[5],p[6]); return;}
+        if(StrCommand=="fillRectHGradient") {tft.fillRectHGradient(p[1],p[2],p[3],p[4],p[5],p[6]); return;}
+        if(StrCommand=="drawCircle")        {tft.drawCircle(p[1],p[2],p[3],p[4]); return;}
         if(StrCommand=="drawCircleHelper")  {tft.drawCircleHelper(p[1],p[2],p[3],p[4],p[5]); return;}
-        if(StrCommand=="fillCircle")  {tft.fillCircle(p[1],p[2],p[3],p[4]); return;}
+        if(StrCommand=="fillCircle")        {tft.fillCircle(p[1],p[2],p[3],p[4]); return;}
         if(StrCommand=="fillCircleHelper")  {tft.fillCircleHelper(p[1],p[2],p[3],p[4],p[5],p[6]); return;}
-        if(StrCommand=="drawEllipse")  {tft.drawEllipse(p[1],p[2],p[3],p[4],p[5]); return;}
+        if(StrCommand=="drawEllipse")   {tft.drawEllipse(p[1],p[2],p[3],p[4],p[5]); return;}
         if(StrCommand=="drawTriangle")  {tft.drawTriangle(p[1],p[2],p[3],p[4],p[5],p[6],p[7]); return;}
         if(StrCommand=="fillTriangle")  {tft.fillTriangle(p[1],p[2],p[3],p[4],p[5],p[6],p[7]); return;}
-        if(StrCommand=="drawNumber")      {tft.drawNumber(p[1],p[2],p[3]); return;}
-        if(StrCommand=="drawFloat")      {tft.drawFloat(p[1],p[2],p[3],p[4]); return;}
-        if(StrCommand=="drawString")      {StrPos=str.indexOf(",");str=str.substring(0, StrPos);tft.drawString(str,p[2],p[3]); return;}
+        if(StrCommand=="drawNumber")    {tft.drawNumber(p[1],p[2],p[3]); return;}
+        if(StrCommand=="drawFloat")     {tft.drawFloat(p[1],p[2],p[3],p[4]); return;}
+        if(StrCommand=="drawString")    {StrPos=str.indexOf(",");str=str.substring(0, StrPos);tft.drawString(str,p[2],p[3]); return;}
         if(StrCommand=="setCursor")     {tft.setCursor(p[1],p[2]); UDP_Check();}  //run again for print or println
         if(StrCommand=="print")         {tft.print(str); return;}  //with setCursor
         if(StrCommand=="println")       {tft.println(str); return;}
+        if(StrCommand=="TextWrap")      {tft.setTextWrap(p[1]);}
         if(StrCommand=="setTextColor")  {tft.setTextColor(p[1], p[2]); return;}
-        
-
-        if(StrCommand=="loadFont")     {tft.loadFont("Fonts/Arial"+String(p[1]), FONTSFS); return;}  //All ttf-fonts same name, number p[1] is the size
-        if(StrCommand=="brightness")   {analogWrite(TFT_BL, p[1]); ; return;}
+        if(StrCommand=="loadFont")      {tft.loadFont("Fonts/Arial"+String(p[1]), FONTSFS); return;}  //All ttf-fonts same name, number p[1] is the size
+        if(StrCommand=="unloadFont")    {tft.unloadFont(); return;}
+        if(StrCommand=="brightness")    {analogWrite(TFT_BL, p[1]); return;}
+        if(StrCommand=="showTime")      {SHOW_TIME=p[1];}
       }
       if(StrCommand=="spr")   //Sprite, just text for now.
       {
@@ -187,26 +189,25 @@ void UDP_Check(void)
           p[i] = rest.substring(0,StrPos).toInt();
           rest=rest.substring(StrPos+1,255);
         }
-        if(StrCommand=="printToSprite") {spr.printToSprite(rest); return;}
+        if(StrCommand=="printToSprite") {spr.printToSprite(rest,p[1], p[2]); return;}
         if(StrCommand=="setTextColor") {spr.setTextColor(p[1],p[2]); return;}
         if(StrCommand=="loadFont")     {spr.loadFont("Fonts/Arial"+p[1], FONTSFS);return;}
+        if(StrCommand=="unloadFont")   {spr.unloadFont(); return;}
       }
       if(StrCommand=="TJpgDec") //Show JPG; parameters are 2x int and a string
       {
-        Serial.println("TJpgDec");
         StrPos=rest.indexOf("(");
         StrCommand=rest.substring(0, StrPos);
-        rest=StrPacket.substring(StrPos+1,255);
+        rest=rest.substring(StrPos+1,255);
         p[0]=0;
         for(int i=1; i<3; i++)
         {
           StrPos=rest.indexOf(",");
           p[i] = rest.substring(0,StrPos).toInt();
           rest=rest.substring(StrPos+1,255);
-          Serial.println(rest);
         }
-        if(StrCommand=="drawFsJpg")     {Serial.print("drawFsjpg");Serial.println(rest); TJpgDec.drawFsJpg(p[1],p[2], rest, LittleFS);return;}   // /in name then LittleFS; withou SD
-        if(StrCommand=="drawSdJpg")     {Serial.print("drawSDjpg");Serial.println(rest); TJpgDec.drawFsJpg(p[1],p[2], rest, SD);return;}
+        if(StrCommand=="drawFsJpg")     {TJpgDec.drawFsJpg(p[1],p[2], rest, LittleFS);return;}   // /in name then LittleFS; withou SD
+        if(StrCommand=="drawSdJpg")     {TJpgDec.drawFsJpg(p[1],p[2], rest, SD);return;}
         //if(StrCommand=="drawJpg")     {Serial.println("drawJpg"); TJpgDec.drawJpg(p[1],p[2], rest, p[3]);return;} //Needs extra file.h with the images
       }
       if(StrCommand=="FTP")
@@ -450,7 +451,11 @@ void setup(void)
   char myip[20];
   sprintf(myip, "%u.%u.%u.%u", ip[0], ip[1], ip[2], ip[3]);
   writeFile(LittleFS, "/ip.txt", myip);
-
+  if (SHOW_TIME)
+    {
+      spr.loadFont(Time_Font, FONTSFS);
+      spr.setTextColor(Time_Font_Color, Time_Background_Color);
+    }
   
   xTaskCreatePinnedToCore(
       CPU0code,                 /* Task function. */
@@ -469,17 +474,15 @@ void loop()
   if (interruptCounter > 0)
   {
     interruptCounter--;
-    if (Show_time)
+    if (SHOW_TIME)
     {
-      spr.loadFont(Time_Font, FONTSFS);
-      spr.setTextColor(Time_Font_Color, Time_Background_Color);
-      tft.setCursor(TimeX, TimeY);
-      spr.printToSprite(timeToStringHMS(getLocalTime()).c_str());
+      spr.printToSprite(timeToStringHMS(getLocalTime()).c_str(), TimeX, TimeY); //changed printToSprite to take x and y, no need for tft.setCursor
     }
   }
   TIMERG1.wdt_wprotect = TIMG_WDT_WKEY_VALUE; // write enable
   TIMERG1.wdt_feed = 1;                       // feed wdt
   TIMERG1.wdt_wprotect = 0;                   // write protect
+  
   if(got_time)  //check incomming UDP
   {
     UDP_Check();
