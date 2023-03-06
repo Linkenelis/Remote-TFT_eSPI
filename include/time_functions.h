@@ -779,6 +779,18 @@
     sprintf (s, " %04i-%02i-%02i ", 1 + timeStr.tm_mon, timeStr.tm_mday, 1900 + timeStr.tm_year);
     return String (s);
   }
+  String timeToStringD (time_t t) {
+    struct tm timeStr = timeToStructTime (t);
+    char s [25];
+    sprintf (s, "%02i ", timeStr.tm_mday);
+    return String (s);
+  }
+  String timeToStringY (time_t t) {
+    struct tm timeStr = timeToStructTime (t);
+    char s [25];
+    sprintf (s, " %04i ",1900 + timeStr.tm_year);
+    return String (s);
+  }
 
   // TESTING CODE
 
