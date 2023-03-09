@@ -147,7 +147,7 @@ void UDP_Check(void)
       UDP.endPacket();
       //how many messages?
       String TotalPacket(packet);
-      String displaymsg[10];  //max 10 display messages in 1 packet (255 max in packet)
+      String displaymsg[10];  //max 10 (short) display messages in 1 packet (255 max in total packet)
       int countlines=0;
       StrPos=TotalPacket.indexOf("\n");
       for(int i=0; i<10; i++)
@@ -265,26 +265,21 @@ void UDP_Check(void)
         {
           StrPos=rest.indexOf("(");
           StrCommand=rest.substring(0, StrPos);
-          Serial.println(StrCommand);
           rest=rest.substring(StrPos+1,255);
+          String Alarm=rest;
           p[0]=0;
           for(int i=1; i<3; i++)
           {
             StrPos=rest.indexOf(",");
             p[i] = rest.substring(0,StrPos).toInt();
             rest=rest.substring(StrPos+1,255);
-            Serial.println(p[i]);
           }
-          Serial.println(p[1]);
           if(StrCommand=="Show_time") {SHOW_TIME=p[1];}
-          if(StrCommand=="Analog") {ANA_TIME=p[1];if(p[1]==0){anaclock_once_has_run=false;}}
-          if(StrCommand=="Digital") {DIGI_TIME=p[1];}
-          Serial.println(ANA_TIME);
+          if(StrCommand=="Analog")    {ANA_TIME=p[1];anaclock_once_has_run=false;}
+          if(StrCommand=="Digital")   {DIGI_TIME=p[1];}
+          if(StrCommand=="Alarm")     {cronTabAdd (Alarm.c_str());}
         }
-
       }
-      
-      
     }
   }
 }
@@ -302,7 +297,13 @@ void cronHandler (char *cronCommand) {
                                                                   Serial.println ("Got time at " + timeToString (t) + " (local time), do whatever needs to be done the first time the time is known.");
                                                                   got_time=true;
                                                                   if(ANA_TIME >0) {anaclock_once();}
-                                                                }           
+                                                                }         
+          if (cronCommandIs ("Alarm"))                        { // triggers on set alarm time date
+                                                                  Serial.println("Alarm!!!");
+                                                                  UDP.beginPacket(Sender1, UDP_port);
+                                                                  UDP.print("Alarm triggered");
+                                                                  UDP.endPacket();
+                                                                }       
                                                                                                                                 
           // handle also other cron commands/events you may have
 
@@ -351,7 +352,6 @@ void Calibrate_TP(void)
 
 void TP_loop()
 {
-  char * UDPmsg;
   if (!digitalRead(TP_IRQ))
   {
     if (tpr_loop)
@@ -385,30 +385,17 @@ void TP_loop()
 }
 
 void CPU0code( void * pvParameters ){         /*2nd task and wifi on CPU0*/
-  esp_task_wdt_init(30, false);               //wdt 30 sec and no reset, just a message in the monitor for this task (CPU0)
+  esp_task_wdt_init(60, false);               //wdt 60 sec and no reset, just a message in the monitor for this task (CPU0)
   Serial.print("TP_loop running on core "); Serial.println(xPortGetCoreID());
   for(;;){
     TP_loop(); 
     TIMERG0.wdt_wprotect=TIMG_WDT_WKEY_VALUE; // write enable
     TIMERG0.wdt_feed=1;                       // feed wdt
     TIMERG0.wdt_wprotect=0;                   // write protect
+    vTaskDelay(50);                           // some time for processes like WiFi
     ftpSrv.handleFTP();
   }
 }
-
-/*bool get_time(void)
-{
-  if (!getLocalTime(&timeinfo))
-  {
-    Serial.println("Failed to obtain time");
-    return false;
-  }
-  else
-  {
-    Serial.println(&timeinfo, "%A, %B %d %Y %H:%M:%S");
-    return true;
-  }
-}*/
 
 static uint8_t conv2d(const char* p) {
   uint8_t v = 0;
@@ -430,19 +417,13 @@ void anaclock()
         hh++;          // Advance hour
         if (hh>23) {
           hh=0;
-          //tft.fillRect(30,30,42,42,TFT_BLACK);
           spr.setTextColor(TFT_WHITE, TFT_BLACK);
-          spr.loadFont("Fonts/Arial32", FONTSFS);
+          if(sprfont!=32) {spr.loadFont("Fonts/Arial32", FONTSFS);}
           spr.printToSprite(timeToStringD(getLocalTime()).c_str(), 0, 70);
           spr.printToSprite(timeToStringY(getLocalTime()).c_str(), 390, 70);
-          char tmptime[20];
-          strftime(tmptime,sizeof(tmptime),"%A ", &timeinfo);
-          spr.printToSprite(tmptime, 0, 40);
-          tft.loadFont("Fonts/Arial32", FONTSFS);
-          
-          strftime(tmptime,sizeof(tmptime),"%B ", &timeinfo);
-          spr.printToSprite(tmptime,  480-spr.textWidth(tmptime), 40);
-          sprfont=20;
+          spr.printToSprite(timeToStringDOW(getLocalTime()).c_str(), 0, 2); //translate DayOfWeek and MONth_name in time_functions.h
+          spr.printToSprite(timeToStringMON(getLocalTime()).c_str(),  480-spr.textWidth(timeToStringMON(getLocalTime()).c_str()), 2);
+          sprfont=32;
         }
       }
     }
@@ -462,7 +443,6 @@ void anaclock()
     my = sin((mdeg-90)*0.0174532925);
     sx = cos((sdeg-90)*0.0174532925);    
     sy = sin((sdeg-90)*0.0174532925);
-
     if (ss==0 || initial) {
       initial = 0;
       // Erase hour and minute hand positions every minute
@@ -473,7 +453,6 @@ void anaclock()
       omx = mx*115+240;    
       omy = my*115+161;
     }
-
       // Redraw new hand positions, hour and minute hands not erased here to avoid flicker
       tft.drawWideLine(osx, osy, 240, 161,3, TFT_BLACK,TFT_BLACK);
       osx = sx*133+241;    
@@ -517,14 +496,11 @@ void anaclock_once()
     if(i==90 || i==270) tft.fillSmoothCircle(x0, yy0, 4, TFT_WHITE, TFT_BLACK);
   }
   spr.setTextColor(TFT_WHITE, TFT_BLACK);
-  spr.loadFont("Fonts/Arial32", FONTSFS);
+  if(sprfont!=32)  {spr.loadFont("Fonts/Arial32", FONTSFS);}
   spr.printToSprite(timeToStringD(getLocalTime()).c_str(), 0, 40);
   spr.printToSprite(timeToStringY(getLocalTime()).c_str(), 390, 40);
-  char tmptime[20];
-  strftime(tmptime,sizeof(tmptime),"%A ", &timeinfo);
-  spr.printToSprite(tmptime, 0, 2);
-  strftime(tmptime,sizeof(tmptime),"%B ", &timeinfo);
-  spr.printToSprite(tmptime, 480-spr.textWidth(tmptime), 2);
+  spr.printToSprite(timeToStringDOW(getLocalTime()).c_str(), 0, 2);
+  spr.printToSprite(timeToStringMON(getLocalTime()).c_str(),  480-spr.textWidth(timeToStringMON(getLocalTime()).c_str()), 2);
   sprfont=32;
   targetTime = millis() + 1000;
   t = getLocalTime ();
@@ -552,19 +528,19 @@ void digiclock() //date and time, ip and strength
       spr.printToSprite(timc);
       previous_day=timeinfo.tm_mday;
     }
-    ypos += 150;  // move ypos down
+    ypos += 130;  // move ypos down
     if (timeinfo.tm_sec == 0 || previous_sec==100)  //previous_sec=100 at start
     {  
       strftime(timc, sizeof timc, " %H:%M ", &timeinfo);
       spr.setTextColor(TFT_WHITE, TFT_BLACK);
       spr.loadFont(Arial150num);
-      tft.setCursor(xpos - 45 - ((spr.textWidth(timc))/2), ypos);
+      tft.setCursor(xpos - 50 - ((spr.textWidth(timc))/2), ypos);
       spr.printToSprite(timc);    // Prints to tft cursor position, tft cursor NOT moved
 
     }
     spr.setTextColor(TFT_DARKGREEN, TFT_BLACK);
     spr.loadFont(Arial50num);
-    tft.setCursor(xpos+146, ypos+73);
+    tft.setCursor(xpos+155, ypos+73);
     strftime(timc, sizeof timc, ":%S ", &timeinfo);
     previous_sec=timeinfo.tm_sec;
     spr.printToSprite(timc);
@@ -642,18 +618,24 @@ void setup(void)
   spr.setColorDepth(16); // 16 bit colour needed to show antialiased fonts
   tft.setTextDatum(BL_DATUM);   //Bottom-Left start of text
   tft.fillScreen((0xF000));
-  tft.setCursor(5,20);
+  tft.setCursor(0,20);
+  tft.loadFont("Fonts/Arial20", FONTSFS);
   spr.setTextDatum(BL_DATUM);
   TJpgDec.setJpgScale(1); // The jpeg image can be scaled by a factor of 1, 2, 4, or 8
   TJpgDec.setSwapBytes(true); // The byte order can be swapped (set true for TFT_eSPI)
   TJpgDec.setCallback(tft_output);    //name of rendering function
+  tft.println("Starting WiFi...");
   wifiManager.setConnectRetries(Conn_retry);
   wifiManager.setHostname(HOSTNAME);
   wifiManager.autoConnect(WiFiAP);
   Serial.print("WiFi RSSI = ");
+  tft.print("WiFi RSSI = ");
   Serial.println(WiFi.RSSI());
+  tft.println(WiFi.RSSI());
   Serial.print("WiFi Quality = ");
+  tft.print("WiFi Quality = ");
   Serial.println(wifiManager.getRSSIasQuality(WiFi.RSSI()));
+  tft.println(wifiManager.getRSSIasQuality(WiFi.RSSI()));
   startCronDaemon (cronHandler);
   cronTabAdd ("* * * * * * gotTime");  // triggers only once - when ESP32 reads time from NTP servers for the first time
   //cronTabAdd ("0 0 0 1 1 * newYear'sGreetingsToProgrammer");  // triggers at the beginning of each year
@@ -663,6 +645,8 @@ void setup(void)
   timerAlarmWrite(timer, 1000000, true); // 1000000 = writes an alarm, that triggers an interupt, every 1 sec with divider 80
   timerAlarmEnable(timer);
   Serial.println("setup done");
+  tft.println("setup done");
+  tft.println("waiting for a timesync...");
   Serial.print("loop running on core ");
   Serial.println(xPortGetCoreID());
   // Begin listening to UDP port
@@ -696,8 +680,10 @@ void loop()
 {
   if (interruptCounter > 0)
   {
+    portENTER_CRITICAL_ISR(&timerMux);    //portenter and exit are needed as to block it for other processes
     interruptCounter--;
-    if(got_time)
+    portEXIT_CRITICAL_ISR(&timerMux);
+    if(got_time)    //show clocks?
     {
       if (SHOW_TIME>0)
       {
@@ -706,7 +692,7 @@ void loop()
       }
       if (ANA_TIME>0)
       {
-        if (anaclock_once_has_run){ anaclock();}
+        if (anaclock_once_has_run){ anaclock();} else {anaclock_once();}
       }
       if (DIGI_TIME>0)
       {
@@ -717,8 +703,8 @@ void loop()
   TIMERG1.wdt_wprotect = TIMG_WDT_WKEY_VALUE; // write enable
   TIMERG1.wdt_feed = 1;                       // feed wdt
   TIMERG1.wdt_wprotect = 0;                   // write protect
-  
-  if(got_time)  //check incomming UDP
+  vTaskDelay(50);                             //some time for processes
+  if(got_time)                                //check incomming UDP messages
   {
     UDP_Check();
   }

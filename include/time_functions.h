@@ -791,6 +791,23 @@
     sprintf (s, " %04i ",1900 + timeStr.tm_year);
     return String (s);
   }
+  //translate
+  String timeToStringDOW (time_t t) {
+    String DOW[9] {"zondag", "maandag", "dinsdag", "woensdag", "donderdag", "vrijdag", "zaterdag", "zondag"};
+    struct tm timeStr = timeToStructTime (t);
+    char s [25];
+    sprintf (s, "%s", DOW[timeStr.tm_wday]);
+    return String (s);
+  }
+  //translate
+  String timeToStringMON (time_t t) {
+    String MON[13] {"januari", "februari", "maart", "april", "mei", "juni", "juli", "augustus", "september","oktober", "november", "december"};
+    struct tm timeStr = timeToStructTime (t);
+    char s [25];
+    sprintf (s, "%s", MON[timeStr.tm_mon]);
+    return String (s);
+  }
+
 
   // TESTING CODE
 
