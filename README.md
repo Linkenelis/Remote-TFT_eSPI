@@ -48,7 +48,7 @@ example Swiss File Knife in windows cmd: sfk udpsend SmartDisplay1 2000 "tft.bri
 
 Example in Arduino:
 #include <WiFiUdp.h>
-#define UDP_PORT 2000 (can be anything as long as they are known to eachothe. So good to keep them the same)
+#define UDP_PORT 2000 (can be anything as long as they are known to each other. So good to keep them the same)
 void UDPsend(char* msg)
 {
   UDP.beginPacket(SmartDisplay1, UDP_PORT);
@@ -58,6 +58,9 @@ void UDPsend(char* msg)
 
 in setup add after WiFi start:
 UDP.begin(UDP_PORT);
+
+Somewhere in the loop:
+UDPsend("tft.println(text to be printed on screen)\n")
 
 Tasmota berry example added.
 press bottom of the display to send Tasmota hostname a message, so it knows the ip of the Display (can berry send to host?)
