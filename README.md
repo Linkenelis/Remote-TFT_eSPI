@@ -62,4 +62,4 @@ UDP.begin(UDP_PORT);
 Tasmota berry example added.
 press bottom of the display to send Tasmota hostname a message, so it knows the ip of the Display (can berry send to host?)
 
-
+analog and digital clocks added. can run independant of UDP
