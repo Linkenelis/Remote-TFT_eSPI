@@ -1,6 +1,8 @@
 # Remote-TFT_eSPI
 TFT_eSPI over UDP
 
+One Display (with touch) for multiple projects.
+
 Bodmers TFT_eSPI with esp32, making a remote display over UDP.
 I was alway breaking my displays :-) so it started from there.
 A 16MB WRover ESP32 (ESP32 module and seperate board) with ili9488 display with touch and SD.
@@ -62,7 +64,17 @@ UDP.begin(UDP_PORT);
 Somewhere in the loop:
 UDPsend("tft.println(text to be printed on screen)\n")
 
-Tasmota berry example added.
-press bottom of the display to send Tasmota hostname a message, so it knows the ip of the Display (can berry send to host?)
+Or when sending multiple lines (buffer is 1023 chars), something like:
+                                                                  UDP.beginPacket(SmartDisplayHostName, 2000);
+                                                                  UDP.printf("tft.loadFont(20)\n");
+                                                                  UDP.printf("tft.setCursor(0,30)\n");
+                                                                  UDP.printf("tft.println(this is the first line)\n");
+                                                                  UDP.printf("tft.setTextColor(%d,%d)\n",TFT_DEEPSKYBLUE, TFT_BLACK);
+                                                                  UDP.printf("tft.setCursor(0,200)\n");
+                                                                  UDP.printf("tft.println(and second line)\n");
+                                                                  UDP.printf("TJpgDec.drawFsJpg(10,280,/Buttons/Button_Download_Red.jpg)\n");
+                                                                  UDP.endPacket();
+
+Tasmota berry can send UDP.
 
 analog and digital clocks added. can run independant of UDP
