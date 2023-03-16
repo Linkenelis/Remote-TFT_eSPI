@@ -1,7 +1,7 @@
 # Remote-TFT_eSPI
 TFT_eSPI over UDP
 
-One Display (with touch) for multiple projects.
+One Display (with touch) for multiple projects. Or one project with a dozen or more Remote-TFT_eSPI Displays.
 Tested with https://github.com/Linkenelis/Esp32-Lyrat-MiniWebRadio and tasmota-Berry
 ![Display](https://github.com/Linkenelis/Remote-TFT_eSPI/blob/main/Working.jpg)
 
@@ -25,9 +25,10 @@ Multitude of possibillities eg:
 
 FTP included to store images (buttons) ttf-Fonts -> send image (jpg) over FTP and then display it
 LittleFS and SD, UDPsend "FTP.LittleFS()" or UDPsend "FTP.SD()", to switch FTP server
+Write a file:
+ftpPut("/SmartDisplayIp.txt", "ip.txt", "SDFTPpwd", "SDFTP", 21, SmartDisplayHostName);
 
 16MB ESP32 gives more the 12 MB LittleFS storage, enough for most.
-
 
 Settings are (mostly) in platform.ini
 
