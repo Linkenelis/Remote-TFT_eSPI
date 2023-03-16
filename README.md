@@ -63,7 +63,7 @@ in setup add after WiFi start:
 UDP.begin(UDP_PORT);
 
 Somewhere in the loop:
-UDPsend("tft.println(text to be printed on screen)\n")
+UDPsend("tft.println(text to be printed on screen)\n");
 
 Or when sending multiple lines (buffer is 1023 chars), something like:
  UDP.beginPacket(SmartDisplayHostName, 2000);
