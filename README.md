@@ -66,15 +66,15 @@ Somewhere in the loop:
 UDPsend("tft.println(text to be printed on screen)\n")
 
 Or when sending multiple lines (buffer is 1023 chars), something like:
-                                                                  UDP.beginPacket(SmartDisplayHostName, 2000);
-                                                                  UDP.printf("tft.loadFont(20)\n");
-                                                                  UDP.printf("tft.setCursor(0,30)\n");
-                                                                  UDP.printf("tft.println(this is the first line)\n");
-                                                                  UDP.printf("tft.setTextColor(%d,%d)\n",TFT_DEEPSKYBLUE, TFT_BLACK);
-                                                                  UDP.printf("tft.setCursor(0,200)\n");
-                                                                  UDP.printf("tft.println(and second line)\n");
-                                                                  UDP.printf("TJpgDec.drawFsJpg(10,280,/Buttons/Button_Download_Red.jpg)\n");
-                                                                  UDP.endPacket();
+ UDP.beginPacket(SmartDisplayHostName, 2000);
+ UDP.printf("tft.loadFont(20)\n");
+ UDP.printf("tft.setCursor(0,30)\n");
+ UDP.printf("tft.println(this is the first line)\n");
+ UDP.printf("tft.setTextColor(%d,%d)\n",TFT_DEEPSKYBLUE, TFT_BLACK);
+ UDP.printf("tft.setCursor(0,200)\n");
+ UDP.printf("tft.println(and second line)\n");
+ UDP.printf("TJpgDec.drawFsJpg(10,280,/Buttons/Button_Download_Red.jpg)\n");
+ UDP.endPacket();
 
 Tasmota berry can send UDP.
 
