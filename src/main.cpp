@@ -673,6 +673,8 @@ void setup(void)
   cronTabAdd ("* * * * * * gotTime");  // triggers only once - when ESP32 reads time from NTP servers for the first time
   //cronTabAdd ("0 0 0 1 1 * newYear'sGreetingsToProgrammer");  // triggers at the beginning of each year
   //cronTabAdd ("0 * * * * * onMinute");  // triggers each minute at 0 seconds
+  //cronTabAdd ("0 0 * * * * onMinute");  // triggers each hour at 0 minutes 0 seconds
+  //cronTabAdd ("0 10 7 * * * onMinute");  // triggers each day at 10 minutes past 7 o'clock
   timer = timerBegin(0, 80, true); // start at 0; divider for 80 MHz = 80 so we have 1 MHz timer; count up = true; timers are 64 bits
   timerAttachInterrupt(timer, &onTimer, false);   //edge doesn't work propperly on esp32, so false here
   timerAlarmWrite(timer, 1000000, true); // 1000000 = writes an alarm, that triggers an interupt, every 1 sec with divider 80
