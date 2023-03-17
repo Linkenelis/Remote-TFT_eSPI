@@ -1,8 +1,9 @@
 # Remote-TFT_eSPI
 TFT_eSPI over UDP
 
-One Display (with touch) for multiple projects.
+One Display (with touch) for multiple projects. Or one project with a dozen or more Remote-TFT_eSPI Displays.
 Tested with https://github.com/Linkenelis/Esp32-Lyrat-MiniWebRadio and tasmota-Berry
+![Display](https://github.com/Linkenelis/Remote-TFT_eSPI/blob/main/Working.jpg)
 
 Bodmers TFT_eSPI with esp32, making a remote display over UDP.
 I was alway breaking my displays :-) so it started from there.
@@ -24,9 +25,10 @@ Multitude of possibillities eg:
 
 FTP included to store images (buttons) ttf-Fonts -> send image (jpg) over FTP and then display it
 LittleFS and SD, UDPsend "FTP.LittleFS()" or UDPsend "FTP.SD()", to switch FTP server
+Write a file:
+ftpPut("/SmartDisplayIp.txt", "ip.txt", "SDFTPpwd", "SDFTP", 21, SmartDisplayHostName);
 
 16MB ESP32 gives more the 12 MB LittleFS storage, enough for most.
-
 
 Settings are (mostly) in platform.ini
 
@@ -63,18 +65,18 @@ in setup add after WiFi start:
 UDP.begin(UDP_PORT);
 
 Somewhere in the loop:
-UDPsend("tft.println(text to be printed on screen)\n")
+UDPsend("tft.println(text to be printed on screen)\n");
 
 Or when sending multiple lines (buffer is 1023 chars), something like:
-                                                                  UDP.beginPacket(SmartDisplayHostName, 2000);
-                                                                  UDP.printf("tft.loadFont(20)\n");
-                                                                  UDP.printf("tft.setCursor(0,30)\n");
-                                                                  UDP.printf("tft.println(this is the first line)\n");
-                                                                  UDP.printf("tft.setTextColor(%d,%d)\n",TFT_DEEPSKYBLUE, TFT_BLACK);
-                                                                  UDP.printf("tft.setCursor(0,200)\n");
-                                                                  UDP.printf("tft.println(and second line)\n");
-                                                                  UDP.printf("TJpgDec.drawFsJpg(10,280,/Buttons/Button_Download_Red.jpg)\n");
-                                                                  UDP.endPacket();
+ UDP.beginPacket(SmartDisplayHostName, 2000);
+ UDP.printf("tft.loadFont(20)\n");
+ UDP.printf("tft.setCursor(0,30)\n");
+ UDP.printf("tft.println(this is the first line)\n");
+ UDP.printf("tft.setTextColor(%d,%d)\n",TFT_DEEPSKYBLUE, TFT_BLACK);
+ UDP.printf("tft.setCursor(0,200)\n");
+ UDP.printf("tft.println(and second line)\n");
+ UDP.printf("TJpgDec.drawFsJpg(10,280,/Buttons/Button_Download_Red.jpg)\n");
+ UDP.endPacket();
 
 Tasmota berry can send UDP.
 
