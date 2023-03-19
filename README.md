@@ -3,7 +3,7 @@ TFT_eSPI over UDP
 
 One Display (with touch) for multiple projects. Or one project with a dozen or more Remote-TFT_eSPI Displays.
 Tested with https://github.com/Linkenelis/Esp32-Lyrat-MiniWebRadio and tasmota-Berry
-![Display](https://github.com/Linkenelis/Remote-TFT_eSPI/blob/main/Working.jpg)
+![Display](https://github.com/Linkenelis/Remote-TFT_eSPI/blob/main/Photo/Front.jpg)
 
 Bodmers TFT_eSPI with esp32, making a remote display over UDP.
 I was alway breaking my displays :-) so it started from there.
@@ -47,7 +47,7 @@ SD_MISO 19
 SD_MOSI 23
 SD_CS   5
 
-There is no read display (not with ili9488 with touch as TFT_MISO is connected to Touch and not to the display)
+There are no read display commands (not with ili9488 with touch as TFT_MISO is connected to Touch and not to the display)
 
 example Swiss File Knife in windows cmd: sfk udpsend SmartDisplay1 2000 "tft.brightness(100)"
 
