@@ -44,13 +44,13 @@ int packetnumber=0;
   #define JPGFS SD
 #endif
 
-
+#include "network.h"
 #include "version_of_servers.h"
 #include "dmesg_functions.h"
 #include "perfMon.h"  
 #include "file_system.h"
 #include "time_functions.h"               // file_system.h is needed prior to #including time_functions.h if you want to store the default parameters
-//#include "ftpClient.h"                    // file_system.h is needed prior to #including ftpClient.h if you want to store the default parameters
+#include "ftpClient.h"                    // file_system.h is needed prior to #including ftpClient.h if you want to store the default parameters
 
 #include "Arial22num.h"
 #include "Arial50num.h"
@@ -258,12 +258,16 @@ void UDP_Check(void)
           rest=rest.substring(StrPos+1,255);
           if(StrCommand=="LittleFS")
           {
+            
             ftpSrv.begin(LittleFS, FTP_USERNAME, FTP_PASSWORD); // username, password for ftp.
           }
           if(StrCommand=="SD")
           {
             ftpSrv.begin(SD, FTP_USERNAME, FTP_PASSWORD); // username, password for ftp.
           }
+          if(StrCommand=="Get") {ftpGet("/logo/m/3FM.jpg", "logo/m/3FM.jpg", "esp32", "esp32", 21, "ESP32-Lyrat-Musicplayer");
+          ftpGet("/tracklist.txt", "tracklist.txt", "esp32", "esp32", 21, "ESP32-Lyrat-Musicplayer");
+          ftpGet("/stations.csv", "stations.csv", "esp32", "esp32", 21, "ESP32-Lyrat-Musicplayer");}
         }
         if(StrCommand=="setClock")
         {
@@ -578,6 +582,9 @@ void Sevenseg(boolean showall){ //show current time on the TFT Display
         oldt=t;*/
 
 }
+void ftp_debug(const char* info) {
+    Serial.printf("ftpsrv: %s", info);
+}
 void setup(void)
 {
   Serial.begin(115200);
@@ -689,11 +696,12 @@ void setup(void)
   Serial.print("Listening on UDP port ");
   Serial.println(UDP_port);
   UDP.setTimeout(500);
-  ftpSrv.begin(LittleFS, FTP_USERNAME, FTP_PASSWORD); // username, password for ftp.
+  ftpSrv.begin(SD, FTP_USERNAME, FTP_PASSWORD); // username, password for ftp.
   IPAddress ip = WiFi.localIP();
   char myip[20];
   sprintf(myip, "%u.%u.%u.%u", ip[0], ip[1], ip[2], ip[3]);
-  writeFile(LittleFS, "/ip.txt", myip);
+  writeFile(SD, "/ip.txt", myip);
+  //ftpGet("/logo/m/3FM.jpg", "logo/m/3FM.jpg", "esp32", "esp32", 21, "ESP32-Lyrat-Musicplayer");
   if (SHOW_TIME)
     {
       spr.loadFont(Time_Font, FONTSFS);

@@ -35,12 +35,12 @@
     #if FILE_SYSTEM == FILE_SYSTEM_FAT
       #include <FFat.h>
       #define fileSystem FFat
-      #pragma message "Compiling file_system.h for FAT file system"
+      //#pragma message "Compiling file_system.h for FAT file system"
     #endif
     #if FILE_SYSTEM == FILE_SYSTEM_LITTLEFS
       #include <LittleFS.h>
       #define fileSystem LittleFS
-      #pragma message "Compiling file_system.h for LittleFS file system"
+      //#pragma message "Compiling file_system.h for LittleFS file system"
     #endif
 
 
@@ -66,7 +66,7 @@
 
     #include "dmesg_functions.h"  
     #ifndef __TIME_FUNCTIONS__
-      #pragma message "Implicitly including time_functions.h (needed to display file times)"
+      //#pragma message "Implicitly including time_functions.h (needed to display file times)"
       #include "time_functions.h"
     #endif
 

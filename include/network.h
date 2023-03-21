@@ -37,7 +37,7 @@
   #define __NETWORK__
 
   #ifndef __FILE_SYSTEM__
-    #pragma message "Compiling network.h without file system (file_system.h), network.h will not use configuration files"
+    //#pragma message "Compiling network.h without file system (file_system.h), network.h will not use configuration files"
   #endif
 
 
@@ -49,6 +49,7 @@
     String iw (int);
     String ifconfig ();
     uint32_t ping (char *, int, int, int, int, int);
+    char strbuf[200];
 
 
     // ----- TUNNING PARAMETERS -----
@@ -59,50 +60,50 @@
     #endif
     // define default STAtion mode parameters to be written to /etc/wpa_supplicant/wpa_supplicant.conf if you want to use ESP as WiFi station
     #ifndef DEFAULT_STA_SSID
-      #pragma message "DEFAULT_STA_SSID was not defined previously, #defining the default YOUR_STA_SSID which most likely will not work"
+      //#pragma message "DEFAULT_STA_SSID was not defined previously, #defining the default YOUR_STA_SSID which most likely will not work"
       #define DEFAULT_STA_SSID          "YOUR_STA_SSID"
     #endif
     #ifndef DEFAULT_STA_PASSWORD
-      #pragma message "DEFAULT_STA_PASSWORD was not defined previously, #defining the default YOUR_STA_PASSWORD which most likely will not work"
+      //#pragma message "DEFAULT_STA_PASSWORD was not defined previously, #defining the default YOUR_STA_PASSWORD which most likely will not work"
       #define DEFAULT_STA_PASSWORD      "YOUR_STA_PASSWORD"
     #endif
     // define default static IP, subnet mask and gateway to be written to /network/interfaces if you want ESP to connect to WiFi with static IP instead of using DHCP
     #ifndef DEFAULT_STA_IP
-      #pragma message "DEFAULT_STA_IP was left undefined, DEFAULT_STA_IP is only needed when static IP address is used"
+      //#pragma message "DEFAULT_STA_IP was left undefined, DEFAULT_STA_IP is only needed when static IP address is used"
       // #define DEFAULT_STA_IP            "10.18.1.200"       // IP that ESP32 is going to use if static IP is configured
     #endif
     #ifndef DEFAULT_STA_SUBNET_MASK
-      #pragma message "DEFAULT_STA_SUBNET_MASK was left undefined, DEFAULT_STA_SUBNET_MASK is only needed when static IP address is used"
+      //#pragma message "DEFAULT_STA_SUBNET_MASK was left undefined, DEFAULT_STA_SUBNET_MASK is only needed when static IP address is used"
       // #define DEFAULT_STA_SUBNET_MASK   "255.255.255.0"
     #endif
     #ifndef DEFAULT_STA_GATEWAY
-      #pragma message "DEFAULT_STA_GATEWAY was left undefined, DEFAULT_STA_GATEWAY is only needed when static IP address is used"
+      //#pragma message "DEFAULT_STA_GATEWAY was left undefined, DEFAULT_STA_GATEWAY is only needed when static IP address is used"
       // #define DEFAULT_STA_GATEWAY       "10.18.1.1"       // your router's IP
     #endif
     #ifndef DEFAULT_STA_DNS_1
-      #pragma message "DEFAULT_STA_DNS_1 was left undefined, DEFAULT_STA_DNS_1 is only needed when static IP address is used"
+      //#pragma message "DEFAULT_STA_DNS_1 was left undefined, DEFAULT_STA_DNS_1 is only needed when static IP address is used"
       // #define DEFAULT_STA_DNS_1         "193.189.160.13"    // or whatever your internet provider's DNS is
     #endif
     #ifndef DEFAULT_STA_DNS_2
-      #pragma message "DEFAULT_STA_DNS_2 was left undefined, DEFAULT_STA_DNS_2 is only needed when static IP address is used"
+      //#pragma message "DEFAULT_STA_DNS_2 was left undefined, DEFAULT_STA_DNS_2 is only needed when static IP address is used"
       // #define DEFAULT_STA_DNS_2         "193.189.160.23"    // or whatever your internet provider's DNS is
     #endif  
     // define default Access Point parameters to be written to /etc/hostapd/hostapd.conf if you want ESP to serve as an access point  
     #ifndef DEFAULT_AP_SSID
-      #pragma message "DEFAULT_AP_SSID was left undefined, DEFAULT_AP_SSID is only needed when A(ccess) P(point) is used"
+      //#pragma message "DEFAULT_AP_SSID was left undefined, DEFAULT_AP_SSID is only needed when A(ccess) P(point) is used"
       #define DEFAULT_AP_SSID           "" // HOSTNAME            // change to what you want to name your AP SSID by default or "" if AP is not going to be used
     #endif
     #ifndef DEFAULT_AP_PASSWORD
-      #pragma message "DEFAULT_AP_PASSWORD was not defined previously, #defining the default YOUR_AP_PASSWORD in case A(ccess) P(point) is used"
+      //#pragma message "DEFAULT_AP_PASSWORD was not defined previously, #defining the default YOUR_AP_PASSWORD in case A(ccess) P(point) is used"
       #define DEFAULT_AP_PASSWORD       "YOUR_AP_PASSWORD"  // at leas 8 characters if AP is used
     #endif
     // define default access point IP and subnet mask to be written to /etc/dhcpcd.conf if you want to define them yourself
     #ifndef DEFAULT_AP_IP
-      #pragma message "DEFAULT_AP_IP was not defined previously, #defining the default 192.168.0.1 in case A(ccess) P(point) is used"
+      //#pragma message "DEFAULT_AP_IP was not defined previously, #defining the default 192.168.0.1 in case A(ccess) P(point) is used"
       #define DEFAULT_AP_IP               "192.168.0.1"
     #endif
     #ifndef DEFAULT_AP_SUBNET_MASK
-      #pragma message "DEFAULT_AP_SUBNET_MASK was not defined previously, #defining the default 255.255.255.0 in case A(ccess) P(point) is used"
+      //#pragma message "DEFAULT_AP_SUBNET_MASK was not defined previously, #defining the default 255.255.255.0 in case A(ccess) P(point) is used"
       #define DEFAULT_AP_SUBNET_MASK      "255.255.255.0"
     #endif
 
@@ -119,16 +120,16 @@
       #include <lwip/netdb.h>
       char *hstrerror (int h_errno) {
         switch (h_errno) {
-          case EAI_NONAME:      return "Name or service is unknown";
-          case EAI_SERVICE:     return "Service not supported for 'ai_socktype'";
-          case EAI_FAIL:        return "Non-recoverable failure in name res";
-          case EAI_MEMORY:      return "Memory allocation failure";
-          case EAI_FAMILY:      return "'ai_family' not supported";
-          case HOST_NOT_FOUND:  return "The specified host is unknown";
-          case NO_DATA:         return "The requested name is valid but does not have an IP address";
-          case NO_RECOVERY:     return "The requested name is valid but does not have an IP address";
-          case TRY_AGAIN:       return "A temporary error occurred on an authoritative name server. Try again later";
-          default:              return "Invalid h_errno code";
+          case EAI_NONAME:      {String s= "Name or service is unknown"; s.toCharArray(strbuf,s.length()) ;return strbuf;}
+          case EAI_SERVICE:     {String s= "Service not supported for 'ai_socktype'"; s.toCharArray(strbuf,s.length()) ;return strbuf;}
+          case EAI_FAIL:        {String s= "Non-recoverable failure in name res"; s.toCharArray(strbuf,s.length()) ;return strbuf;}
+          case EAI_MEMORY:      {String s= "Memory allocation failure"; s.toCharArray(strbuf,s.length()) ;return strbuf;}
+          case EAI_FAMILY:      {String s= "'ai_family' not supported"; s.toCharArray(strbuf,s.length()) ;return strbuf;}
+          case HOST_NOT_FOUND:  {String s= "The specified host is unknown"; s.toCharArray(strbuf,s.length()) ;return strbuf;}
+          case NO_DATA:         {String s= "The requested name is valid but does not have an IP address"; s.toCharArray(strbuf,s.length()) ;return strbuf;}
+          case NO_RECOVERY:     {String s= "The requested name is valid but does not have an IP address"; s.toCharArray(strbuf,s.length()) ;return strbuf;}
+          case TRY_AGAIN:       {String s= "A temporary error occurred on an authoritative name server. Try again later"; s.toCharArray(strbuf,s.length()) ;return strbuf;}
+          default:              {String s= "Invalid h_errno code"; s.toCharArray(strbuf,s.length()) ;return strbuf;}
         }
       }
     
